@@ -1,0 +1,10 @@
+{%extends "airlineapp/base.html" %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form with labels and fields -->
+        <button type="submit">Add Flight</button>
+    </form>
+    <br>
+    <button><a href="{% url 'flight_results' %}">Home</a></button>
+{% endblock %}

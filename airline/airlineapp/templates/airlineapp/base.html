@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Airline App{% endblock %}</title>
+    <style>
+        body {
+            margin: auto;
+            max-width: 800px;
+            box-shadow: 0px 0px 10px black;
+            border-radius: 10px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        div {
+            margin-left: 20px;
+            padding-bottom: 10px;
+        }
+
+        header {
+            background-color: blue;
+            margin-left: 0px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        header h1 {
+            /* margin-left: 10px; */
+            text-align: center;
+
+        }
+
+        button {
+            background-color:rgb(113, 255, 47);
+            color: black;
+            border: none;
+            padding: 4px;
+            width: 140px;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color:rgb(102, 230, 43);
+            cursor: pointer;
+        }
+
+        button a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>    
+    <header>
+        <h1>Airline App</h1>
+    </header>
+    <div>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

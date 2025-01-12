@@ -1,0 +1,22 @@
+{% extends "airlineapp/base.html" %}
+
+{% block content %}
+    <h1>Filtered Flights</h1>
+
+    {% if flights %}
+        <ul>
+            {% for flight in flights %}
+                <li>
+                    Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }}. 
+                    Duration: {{ flight.duration }} minutes. 
+                    Date: {{ flight.date }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No flights match your criteria.</p>
+    {% endif %}
+
+    <a href="{% url 'flight_filter' %}">Back to Filter</a>
+    <!-- <a href="{% url 'admin' %}">Admin</a> -->
+{% endblock %}
