@@ -1,0 +1,25 @@
+{% extends "airlineapp/base.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Deposit Money</h1>
+
+    <!-- Passenger Details -->
+    <h3>Passenger: {{ passenger.first }} {{ passenger.last }}</h3>
+    <p>Current Balance: ${{ passenger.balance }}</p>
+
+    <!-- Deposit Form -->
+    <form method="post" class="border p-4 rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.amount.label_tag }}
+            {{ form.amount|add_class:"form-control" }}
+        </div>
+        <button type="submit" class="btn btn-primary">Deposit</button>
+    </form>
+
+    <a href="{% url 'flight_filter' %}" class="btn btn-secondary mt-3">Back to Filter</a>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Airline App{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: auto;
+            margin-top: 15px;
+            max-width: 800px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.178);
+            border-radius: 10px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        div {
+            margin-left: 20px;
+            padding-bottom: 10px;
+        }
+
+        header {
+            background-color: blue;
+            margin-left: 0px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        header h1 {
+            /* margin-left: 10px; */
+            text-align: center;
+
+        }
+
+        button {
+            background-color:rgb(113, 255, 47);
+            color: black;
+            border: none;
+            padding: 4px;
+            width: 140px;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color:rgb(102, 230, 43);
+            cursor: pointer;
+        }
+
+        button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+        }
+
+        body nav {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'flight_filter' %}" style="margin-left: 10px;">Airline App</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

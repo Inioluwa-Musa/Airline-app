@@ -1,0 +1,13 @@
+{% extends "airlineapp/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Filter Flights</h1>
+
+    <!-- Display form -->
+    <form method="get" action="{% url 'flight_results' %}" class="border p-4 rounded">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search Flights</button>
+    </form>
+</div>
+{% endblock %}

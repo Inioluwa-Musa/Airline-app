@@ -1,0 +1,16 @@
+{% extends "airlineapp/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Admin - Add Flight</h1>
+
+    <!-- Display form -->
+    <form method="POST" class="border p-4 rounded">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Flight</button>
+    </form>
+
+    <a href="{% url 'flight_results' %}" class="btn btn-secondary mt-3">Home</a>
+</div>
+{% endblock %}

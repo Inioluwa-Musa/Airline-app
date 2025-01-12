@@ -1,0 +1,19 @@
+{% extends "users/layout.html" %}
+
+{% block content %}
+
+{% if context %}
+    <p style="color: red;"> {{ context }}</p>
+{% endif %}
+
+<form action="{% url 'login'%}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" id="" placeholder="Password">
+    <input type="submit" value="Login">
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "airlineapp/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Book a Flight</h1>
+
+    <!-- Flight Details -->
+    <div class="mb-4">
+        <h3>Flight Details</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Origin:</strong> {{ flight.origin }}</li>
+            <li class="list-group-item"><strong>Destination:</strong> {{ flight.destination }}</li>
+            <li class="list-group-item"><strong>Duration:</strong> {{ flight.duration }} minutes</li>
+            <li class="list-group-item"><strong>Date:</strong> {{ flight.date }}</li>
+            <li class="list-group-item"><strong>Price:</strong> ${{ flight.price }}</li>
+        </ul>
+    </div>
+
+    <!-- Booking Form -->
+    <form method="post" action="{% url 'flight' flight.id %}" class="border p-4 rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_first" class="form-label">Username</label>
+            <input type="text" class="form-control" id="id_username" name="username" value="{{ username }}" readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">Book</button>
+    </form>
+
+    <a href="{% url 'flight_filter' %}" class="btn btn-secondary mt-3">Back to Filter</a>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "airlineapp/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Filtered Flights</h1>
+
+    {% if flights %}
+        <ul class="list-group">
+            {% for flight in flights %}
+                <li class="list-group-item">
+                    <a href="/{{ flight.id }}" class="text-decoration-none">
+                        Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} (${{ flight.price }})
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No flights match your criteria.</p>
+    {% endif %}
+
+    <a href="{% url 'flight_filter' %}" class="btn btn-secondary mt-3">Back to Filter</a>
+    {% if user.is_authenticated and passenger_id %}
+        <a href="{% url 'deposit' passenger_id %}" class="btn btn-primary mt-3">Deposit Funds</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mt-3">Logout</button>
+        </form>
+    {% else %}
+        <p class="text-muted">Log in to manage your profile and funds.</p>
+        <!-- <a href="{% url 'login' %}" class="btn btn-primary mt-3">Login</a>
+        <a href="{% url 'signup' %}" class="btn btn-secondary mt-3">Sign Up</a> -->
+    {% endif %}
+</div>
+{% endblock %}
