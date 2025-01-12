@@ -26,7 +26,7 @@ class Flight(models.Model):
         return f"{self.id}: {self.origin} to {self.destination} (${self.price})"
 
     def is_valid(self):
-        if self.origin != self.destination or self.price > 0 or self.duration >= 0:
+        if self.origin != self.destination and self.price > 0 and self.duration >= 0:
             return True
         elif self.origin == self.destination:
             error = "Origin and destination cannot be the same."
